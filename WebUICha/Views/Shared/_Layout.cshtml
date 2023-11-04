@@ -1,0 +1,123 @@
+﻿
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="group" data-theme-color="violet" data-mode="light">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta content="Tailwind Admin & Dashboard Template"
+          name="description" />
+    <meta content="" name="Themesbrand" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/assets/images/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- magnific-popup css -->
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="~/assets/css/tailwind2.css">
+    <title>Gerçek Zamanlı Sohbet</title>
+    <style>
+        .chat-container {
+           
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .chat {
+            width: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .messages {
+            height: 150px;
+            overflow-y: auto;
+        }
+
+        .user-interface {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="lg:flex">
+ 
+        
+
+
+
+        <!-- Start User chat -->
+        <div class="w-full overflow-hidden transition-all duration-150 bg-white  dark:bg-zinc-800">
+            <div class="lg:flex">
+                <!-- start chat conversation section -->
+
+                <div class="relative w-full overflow-hidden  " data-simplebar>
+                    <div class="p-4 border-b border-gray-100 lg:p-6 text-gray-50 dark:text-gray-50 flex justify-between items-center">
+                        <li class="text-center light-dark-mode nav-item lg:block">
+                            <a href="#" class="hidden dark:block dark:text-violet-100/80">
+                                <i class="fa-2x fa-solid fa-sun"></i>
+                            </a>
+                            <a href="#" class="block text-gray-500 dark:hidden">
+                                <i class="fa-2x fa-solid fa-moon"></i>
+                            </a>
+                        </li>
+                        <h2 >Live Chate</h2>
+                        <div>
+                          
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @(await Component.InvokeAsync("Auth"))
+                            }
+                            else
+                            {
+                                <a href="/auth/login" class="btn  btn-sm" style="color:#fff; background-color:#1E60AA;">Login</a>
+                            }
+                        </div>
+                    </div>
+                    <!-- end chat user head -->
+                    <!-- start chat conversation -->
+                    @RenderBody()
+                    <!-- end chat input section -->
+
+                </div>
+                <!-- end chat conversation section -->
+                <!-- start User profile detail sidebar -->
+                <!-- Start profile content -->
+                <!-- end User profile detail sidebar -->
+            </div>
+        </div>
+        <!-- End User chat -->
+    </div>
+
+
+    <script src="~/assets/libs/jquery/jquery.min.js"></script>
+    <script src="~/assets/js/pages/profile.init.js"></script>
+    <script src="~/assets/libs/simplebar/simplebar.min.js"></script>
+    <!-- Magnific Popup-->
+    <script src="~/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- owl.carousel js -->
+    <script src="~/assets/libs/owl.carousel/owl.carousel.min.js"></script>
+
+    <!-- page init -->
+    <script src="~/assets/js/pages/index.init.js"></script>
+
+    <script src="~/assets/js/pages/profile.init.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.13/signalr.min.js"></script>
+    <script src="~/assets/js/app.js"></script>
+    @RenderSection("Scripts",  false)
+</body>
+
+</html>

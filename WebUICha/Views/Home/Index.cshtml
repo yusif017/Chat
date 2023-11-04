@@ -1,0 +1,38 @@
+﻿<div class="chat-container">
+    <div class="chat">
+        <div class="messages" id="messages"></div>
+    </div>
+    <div class="user-interface">
+        <input type="text" id="messageInput" placeholder="Type your message">
+        <button id="sendMessage">Send</button>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/lib/signalr/dist/browser/signalr.min.js"></script>
+
+    <script>
+        const connection = new signalR.HubConnectionBuilder().withUrl("/message").build();
+
+        connection.on("ReceiveMessage", (user, message) => {
+            const messagesDiv = document.getElementById("messages");
+            const messageParagraph = document.createElement("p");
+            messageParagraph.textContent = `${user}: ${message}`;
+            messagesDiv.appendChild(messageParagraph);
+        });
+
+        connection.start().then(() => {
+            connection.invoke("JoinDefaultGroups").catch(err => console.error(err.toString()));
+        }).catch(err => console.error(err.toString()));
+
+        document.getElementById("sendMessage").addEventListener("click", () => {
+            const messageInput = document.getElementById("messageInput");
+            const message = messageInput.value;
+            if (message.trim() !== "") {
+                connection.invoke("SendMessage", message).catch(err => console.error(err.toString()));
+                messageInput.value = "";
+            }
+        });
+
+    </script>
+}

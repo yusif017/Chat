@@ -1,0 +1,20 @@
+﻿@using WebUICha.Model;
+@model User
+<div class="d-flex" style="display:flex; align-items:center;">
+    <div>
+        <form method="post" asp-area="" asp-controller="Auth" asp-action="Logout">
+            <input value="Logout" type="submit" class="btn btn-sm" style="color:#fff;background-color:#1E60AA;" />
+        </form>
+
+    </div>
+    <span style="margin-left:3px;">
+        <p>
+           UserName: @Model.Lastname
+        </p>
+        <p>
+     GurupName: @Model.Firstname
+        </p>
+    </span>
+
+</div>
+     

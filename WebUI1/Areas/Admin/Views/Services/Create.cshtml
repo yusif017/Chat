@@ -1,0 +1,79 @@
+﻿@model Service
+<form method="post" enctype="multipart/form-data">
+    <div class="row"> 
+    <div class="col-12">
+    <div class="bagqraund">
+        <div class="container">
+            <div class="col-12">
+                <div class="form-group">
+                    <label asp-for="Title" class="form-label"></label>
+                    <input class="form-control" asp-for="Title" />
+                    <span class="text-danger" asp-validation-for="Title"></span>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label asp-for="Description" class="form-label"></label>
+                    <textarea id="editor1" class="form-control" asp-for="Description"></textarea>
+                    <span class="text-danger" asp-validation-for="Description"></span>
+                </div>
+            </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label asp-for="Url" class="form-label"></label>
+                            <input class="form-control" asp-for="Url" />
+                            <span class="text-danger" asp-validation-for="Url"></span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label asp-for="Icon" class="form-label"></label>
+                            <div class="icon-list">
+                                <i class="fa-solid fa-fire-extinguisher text-primary fa-2x" onclick="selectIcon(' fa-solid fa-fire-extinguisher text-primary fa-2x')"></i>
+                                <i class="fa-solid fa-fire text-primary fa-2x" onclick="selectIcon('fa-solid fa-fire text-primary fa-2x')"></i>
+                                <i class="fa-solid fa-house-chimney fa-2x text-primary" onclick="selectIcon('fa-solid fa-house-chimney text-primary fa-2x')"></i>
+                                <i class="fa-solid fa-bolt fa-2x text-primary" onclick="selectIcon('fa-solid fa-bolt fa-2x text-primary ')"></i>
+                            </div>
+                            <div class="selected-icon">
+                                <p class="d-flex justify-content-between align-items-center">
+                                    <h4>Seçilen İkon:</h4><i id="selectedIcon" class="fa fa-2x"></i>
+                                </p>
+                            </div>
+                                <input type="text" class="form-control" placeholder="Icon class name" asp-for="Icon" id="selectedIconInput">
+                            </div>
+                            <span class="text-danger" asp-validation-for="Icon"></span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-outline-info m-2" />
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+</form>
+
+@section Scripts{
+    <script src="//cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('editor1');
+    </script>
+    <script>
+        function selectIcon(iconValue) {
+            document.getElementById('selectedIcon').className = `fa ${iconValue} fa-2x text-primary`;
+            document.getElementById('selectedIconInput').value = iconValue;
+        }
+        function createIcon() {
+            const selectedIconValue = document.getElementById('selectedIconInput').value;
+            if (selectedIconValue) {
+                // Seçilen ikonun değerini kullanarak istediğiniz işlemi gerçekleştirin
+                alert(`"${selectedIconValue}" ikonu oluşturuldu.`);
+            } else {
+                alert('Lütfen bir ikon seçin.');
+            }
+        }
+    </script>
+
+}

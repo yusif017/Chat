@@ -1,0 +1,10 @@
+﻿@using WebUICha.Model;
+@model List<Message>
+
+
+     @foreach (var item in Model)
+            {
+                <h2>
+        @item.Text
+                </h2>
+            }

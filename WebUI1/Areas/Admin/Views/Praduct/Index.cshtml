@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Product>
+@section Link{
+    <link href="~/admin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+}
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a href="/admin/Praduct/create" class="m-0 font-weight-bold text-primary">Create</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>#</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                              <th>#</th>
+                              <td><img class="ui medium bordered image" src="@item.PhotoUrl"  width="150px"/></td>
+                              <td>@item.Title</td>
+                              <td class=" d-flex justify-content-around align-items-center">
+                              <a href="/admin/Praduct/Edit/@item.Id" class="btn btn-info md-2">Edit</a>
+                              <form method="post" asp-action="Delete" asp-route-id="@item.Id">
+                              <button type="submit" onclick="return confirm('Are you sure you want to delete: @item.Title')" class="m-2 btn btn-danger">Delete</button>
+                              </form>
+                              </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- DataTales Example -->
+@section Scripts{
+    <!-- Page level plugins -->
+    <script src="~/admin/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="~/admin/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+
+    </script>
+                }
